@@ -26,7 +26,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Rick And Morty"),),
+      appBar: AppBar(title: Text("Food Maniac"),),
 
       body: ListView(children: <Widget>[
         TextField(
