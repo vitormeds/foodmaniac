@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodmaniac/addProductWidget.dart';
+import 'package:foodmaniac/home/view/listProducts.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AddProductWidget(),
+      home: ListProducts(),
     );
   }
 }
