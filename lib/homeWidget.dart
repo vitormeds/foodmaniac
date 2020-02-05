@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HomeWidget extends StatefulWidget {
+class AddProductWidget extends StatefulWidget {
   @override
-  _HomeWidgetState createState() => _HomeWidgetState();
+  _AddProductWidgetState createState() => _AddProductWidgetState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
+class _AddProductWidgetState extends State<AddProductWidget> {
 
   final nameController = TextEditingController();
   final valueController = TextEditingController();
