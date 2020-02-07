@@ -99,7 +99,7 @@ class _ListProductsWidgetState extends State<ListProducts> {
                           ),
                           onPressed: () {},
                           color: Colors
-                              .white, //specify background color  of button from our list of colors
+                              .white,
                         ),
                       )
                     ],
