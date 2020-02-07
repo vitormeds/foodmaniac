@@ -103,7 +103,7 @@ class _ListProductsWidgetState extends State<ListProducts> {
                                       child: new Icon(
                                         Icons.add,
                                         color: Colors.blue,
-                                        size: 2.0,
+                                        size: 10.0,
                                       ),
                                       shape: new CircleBorder(),
                                       elevation: 2.0,
@@ -123,7 +123,7 @@ class _ListProductsWidgetState extends State<ListProducts> {
                                       child: new Icon(
                                         Icons.minimize,
                                         color: Colors.blue,
-                                        size: 2.0,
+                                        size: 10.0,
                                       ),
                                       shape: new CircleBorder(),
                                       elevation: 2.0,
