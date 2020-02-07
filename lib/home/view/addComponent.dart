@@ -7,43 +7,46 @@ class AddComponent extends StatelessWidget {
   VoidCallback minusPressed;
   VoidCallback plusPressed;
 
+  Text valueText;
+
   @override
   Widget build(BuildContext context) {
+    valueText = Text(value.toString());
     return Row(children: <Widget>[
       Container(
           margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
           alignment: Alignment.centerLeft,
           width: 40,
           child: RawMaterialButton(
-            onPressed: () {},
+            onPressed: plusPressed,
             child: new Icon(
               Icons.add,
-              color: Colors.blue,
+              color: Colors.white,
               size: 10.0,
             ),
             shape: new CircleBorder(),
             elevation: 2.0,
-            fillColor: Colors.white,
+            fillColor: Colors.blue,
           )),
       Container(
         alignment: Alignment.center,
         width: 20,
-        child: Text(value.toString()),
+        child: valueText,
       ),
       Container(
           margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
           alignment: Alignment.centerRight,
           width: 40,
           child: RawMaterialButton(
-            onPressed: () {},
+            onPressed: minusPressed,
             child: new Icon(
               Icons.minimize,
-              color: Colors.blue,
+              color: Colors.white,
               size: 10.0,
             ),
             shape: new CircleBorder(),
             elevation: 2.0,
-            fillColor: Colors.white,
+            fillColor: Colors.blue,
           ))
     ]);
   }

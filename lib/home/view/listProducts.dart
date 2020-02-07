@@ -5,6 +5,7 @@ import 'package:foodmaniac/addProductWidget.dart';
 import 'package:foodmaniac/home/bloc/productBloc.dart';
 import 'package:foodmaniac/home/model/product.dart';
 import 'package:foodmaniac/home/view/addComponent.dart';
+import 'package:foodmaniac/home/view/productCell.dart';
 
 class ListProducts extends StatefulWidget {
   @override
@@ -13,8 +14,6 @@ class ListProducts extends StatefulWidget {
 
 class _ListProductsWidgetState extends State<ListProducts> {
   ProductBloc bloc;
-
-  static var addComponent = AddComponent(value: 0,minusPressed: minusPressed,plusPressed: plusPressed);
 
   @override
   void initState() {
@@ -66,54 +65,17 @@ class _ListProductsWidgetState extends State<ListProducts> {
                 itemCount: characters.length,
                 itemBuilder: (BuildContext context, int index) {
                   Result character = characters[index];
-                  return Container(
-                      width: 50,
-                      child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                                child: CachedNetworkImage(
-                              placeholder: (context, url) =>
-                                  CircularProgressIndicator(),
-                              imageUrl: character.image,
-                              height: 50,
-                              width: 50,
-                              alignment: Alignment.centerLeft,
-                            )),
-                            Expanded(
-                                child: Container(
-                              margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                              child: Column(
-                                children: <Widget>[
-                                  Text(character.name,
-                                      style: TextStyle(fontSize: 14),
-                                      overflow: TextOverflow.ellipsis),
-                                  Text(character.species,
-                                      style: TextStyle(fontSize: 14),
-                                      overflow: TextOverflow.ellipsis)
-                                ],
-                              ),
-                              alignment: Alignment.center,
-                            )),
-                            Container(
-                              child: addComponent,
-                              alignment: Alignment.centerRight,
-                            )
-                          ]));
+                  return ProductCell(character, minusPressed, plusPressed);
                 });
           }),
     );
   }
 
-  static void minusPressed() {
-    addComponent.value = addComponent.value + 1;
-    print("aaa");
+  void minusPressed(Result character) {
+   print("-");
   }
 
-  static void plusPressed() {
-    print("aaa");
-    if(addComponent.value > 0) {
-      addComponent.value = addComponent.value + 1;
-    }
+  void plusPressed(Result character) {
+    print("+");
   }
 }
