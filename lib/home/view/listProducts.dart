@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:foodmaniac/addProductWidget.dart';
 import 'package:foodmaniac/home/bloc/productBloc.dart';
 import 'package:foodmaniac/home/model/product.dart';
 import 'package:foodmaniac/home/view/addComponent.dart';
+import 'package:foodmaniac/home/view/addProductWidget.dart';
 import 'package:foodmaniac/home/view/productCell.dart';
 
 class ListProducts extends StatefulWidget {
