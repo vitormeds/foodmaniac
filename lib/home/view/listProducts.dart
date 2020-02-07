@@ -11,7 +11,6 @@ class ListProducts extends StatefulWidget {
 }
 
 class _ListProductsWidgetState extends State<ListProducts> {
-
   ProductBloc bloc;
 
   @override
@@ -28,11 +27,12 @@ class _ListProductsWidgetState extends State<ListProducts> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Food Maniac"),),
+      appBar: AppBar(
+        title: Text("Food Maniac"),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
@@ -42,71 +42,99 @@ class _ListProductsWidgetState extends State<ListProducts> {
         },
         child: Icon(Icons.add),
       ),
+      body: StreamBuilder(
+          stream: bloc.product,
+          builder: (context, AsyncSnapshot<Product> snapshop) {
+            if (snapshop.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
 
-      body: StreamBuilder(stream: bloc.product,builder: (context, AsyncSnapshot<Product> snapshop){
+            if (!snapshop.hasData ||
+                snapshop.hasError ||
+                snapshop.data.results.isEmpty) {
+              return Center(child: Text("Sem conexão"));
+            }
 
-        if(snapshop.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator(),);
-        }
+            List<Result> characters = snapshop.data.results;
 
-        if(!snapshop.hasData || snapshop.hasError || snapshop.data.results.isEmpty) {
-          return Center(child: Text("Sem conexão"));
-        }
-
-        List<Result> characters = snapshop.data.results;
-
-        return ListView.builder(
-          itemCount: characters.length,
-          itemBuilder: (BuildContext context, int index) {
-            Result character = characters[index];
-           return Container(child: Row(children: <Widget>[
-             Column(
-                children: <Widget>[
-                  CachedNetworkImage(
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    imageUrl:
-                    character.image,
-                    height: 50,
-                    width: 50,
-                  )
-                ]),
-            Column(
-              children: <Widget>[
-                Row(children: <Widget>[Text(character.name,overflow: TextOverflow.clip,)],),
-                Row(children: <Widget>[Text(character.species,overflow: TextOverflow.clip,)],)
-              ]),
-            Column(
-            children: <Widget>[
-              Row(children: <Widget>[
-                RawMaterialButton(
-                  onPressed: () {},
-                  child: new Icon(
-                    Icons.add,
-                    color: Colors.blue,
-                    size: 5.0,
-                  ),
-                  shape: new CircleBorder(),
-                  elevation: 2.0,
-                  fillColor: Colors.white,
-                ),
-                Text("0"),
-                RawMaterialButton(
-                  onPressed: () {},
-                  child: new Icon(
-                    Icons.minimize,
-                    color: Colors.blue,
-                    size: 5.0,
-                  ),
-                  shape: new CircleBorder(),
-                  elevation: 2.0,
-                  fillColor: Colors.white,
-                )
-              ],)
-            ])
-           ]));
-          }
-        );
-      }),
+            return ListView.builder(
+                itemCount: characters.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Result character = characters[index];
+                  return Container(
+                      width: 50,
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                                child: CachedNetworkImage(
+                              placeholder: (context, url) =>
+                                  CircularProgressIndicator(),
+                              imageUrl: character.image,
+                              height: 50,
+                              width: 50,
+                              alignment: Alignment.centerLeft,
+                            )),
+                            Expanded(
+                                child: Container(
+                              margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                              child: Column(
+                                children: <Widget>[
+                                  Text(character.name,
+                                      style: TextStyle(fontSize: 14),
+                                      overflow: TextOverflow.ellipsis),
+                                  Text(character.species,
+                                      style: TextStyle(fontSize: 14),
+                                      overflow: TextOverflow.ellipsis)
+                                ],
+                              ),
+                              alignment: Alignment.center,
+                            )),
+                            Container(
+                              child: Row(children: <Widget>[
+                                Container(
+                                    margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                                    alignment: Alignment.centerLeft,
+                                    width: 40,
+                                    child: RawMaterialButton(
+                                      onPressed: () {},
+                                      child: new Icon(
+                                        Icons.add,
+                                        color: Colors.blue,
+                                        size: 2.0,
+                                      ),
+                                      shape: new CircleBorder(),
+                                      elevation: 2.0,
+                                      fillColor: Colors.white,
+                                    )),
+                                Container(
+                                  alignment: Alignment.center,
+                                  width: 20,
+                                  child: Text("0"),
+                                ),
+                                Container(
+                                    margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                                    alignment: Alignment.centerRight,
+                                    width: 40,
+                                    child: RawMaterialButton(
+                                      onPressed: () {},
+                                      child: new Icon(
+                                        Icons.minimize,
+                                        color: Colors.blue,
+                                        size: 2.0,
+                                      ),
+                                      shape: new CircleBorder(),
+                                      elevation: 2.0,
+                                      fillColor: Colors.white,
+                                    ))
+                              ]),
+                              alignment: Alignment.centerRight,
+                            )
+                          ]));
+                });
+          }),
     );
   }
 }
