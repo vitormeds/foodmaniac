@@ -36,12 +36,24 @@ class _AddProductWidgetState extends State<AddProductWidget> {
       body: ListView(children: <Widget>[
         TextField(
           controller: nameController,
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Nome'
+            )
         ),
         TextField(
           controller: valueController,
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Valor'
+            )
         ),
         TextField(
           controller: descriptionController,
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Descrição'
+            )
         ),
         RaisedButton(
           onPressed: () {
