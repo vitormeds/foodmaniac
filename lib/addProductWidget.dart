@@ -25,7 +25,12 @@ class _AddProductWidgetState extends State<AddProductWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        behavior: HitTestBehavior.translucent,
+        child: Scaffold(
       appBar: AppBar(title: Text("Food Maniac"),),
 
       body: ListView(children: <Widget>[
@@ -48,7 +53,7 @@ class _AddProductWidgetState extends State<AddProductWidget> {
           ),
         )
       ],padding: EdgeInsets.fromLTRB(16, 0, 16, 0),),
-    );
+    ));
   }
 
    void _showDialog() {
