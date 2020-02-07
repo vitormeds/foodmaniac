@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:foodmaniac/addProductWidget.dart';
 import 'package:foodmaniac/home/bloc/productBloc.dart';
 import 'package:foodmaniac/home/model/product.dart';
+import 'package:foodmaniac/home/view/addComponent.dart';
 
 class ListProducts extends StatefulWidget {
   @override
@@ -12,6 +13,8 @@ class ListProducts extends StatefulWidget {
 
 class _ListProductsWidgetState extends State<ListProducts> {
   ProductBloc bloc;
+
+  static var addComponent = AddComponent(value: 0,minusPressed: minusPressed,plusPressed: plusPressed);
 
   @override
   void initState() {
@@ -93,48 +96,24 @@ class _ListProductsWidgetState extends State<ListProducts> {
                               alignment: Alignment.center,
                             )),
                             Container(
-                              child: Row(children: <Widget>[
-                                Container(
-                                    margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                                    alignment: Alignment.centerLeft,
-                                    width: 40,
-                                    child: RawMaterialButton(
-                                      onPressed: () {},
-                                      child: new Icon(
-                                        Icons.add,
-                                        color: Colors.blue,
-                                        size: 10.0,
-                                      ),
-                                      shape: new CircleBorder(),
-                                      elevation: 2.0,
-                                      fillColor: Colors.white,
-                                    )),
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: 20,
-                                  child: Text("0"),
-                                ),
-                                Container(
-                                    margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                                    alignment: Alignment.centerRight,
-                                    width: 40,
-                                    child: RawMaterialButton(
-                                      onPressed: () {},
-                                      child: new Icon(
-                                        Icons.minimize,
-                                        color: Colors.blue,
-                                        size: 10.0,
-                                      ),
-                                      shape: new CircleBorder(),
-                                      elevation: 2.0,
-                                      fillColor: Colors.white,
-                                    ))
-                              ]),
+                              child: addComponent,
                               alignment: Alignment.centerRight,
                             )
                           ]));
                 });
           }),
     );
+  }
+
+  static void minusPressed() {
+    addComponent.value = addComponent.value + 1;
+    print("aaa");
+  }
+
+  static void plusPressed() {
+    print("aaa");
+    if(addComponent.value > 0) {
+      addComponent.value = addComponent.value + 1;
+    }
   }
 }
