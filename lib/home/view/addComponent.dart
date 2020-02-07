@@ -7,11 +7,13 @@ class AddComponent extends StatelessWidget {
   VoidCallback minusPressed;
   VoidCallback plusPressed;
 
-  Text valueText;
+  TextEditingController valueTextController;
+  TextField valueText;
 
   @override
   Widget build(BuildContext context) {
-    valueText = Text(value.toString());
+    valueTextController = TextEditingController(text: value.toString());
+    valueText = TextField(controller: valueTextController,keyboardType: TextInputType.number,);
     return Row(children: <Widget>[
       Container(
           margin: EdgeInsets.fromLTRB(4, 0, 4, 0),

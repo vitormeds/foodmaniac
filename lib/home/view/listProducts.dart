@@ -31,51 +31,56 @@ class _ListProductsWidgetState extends State<ListProducts> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Food Maniac"),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AddProductWidget()),
-          );
+    return GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
         },
-        child: Icon(Icons.add),
-      ),
-      body: StreamBuilder(
-          stream: bloc.product,
-          builder: (context, AsyncSnapshot<Product> snapshop) {
-            if (snapshop.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
+        behavior: HitTestBehavior.translucent,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("Food Maniac"),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddProductWidget()),
               );
-            }
+            },
+            child: Icon(Icons.add),
+          ),
+          body: StreamBuilder(
+              stream: bloc.product,
+              builder: (context, AsyncSnapshot<Product> snapshop) {
+                if (snapshop.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
 
-            if (!snapshop.hasData ||
-                snapshop.hasError ||
-                snapshop.data.results.isEmpty) {
-              return Center(child: Text("Sem conexão"));
-            }
+                if (!snapshop.hasData ||
+                    snapshop.hasError ||
+                    snapshop.data.results.isEmpty) {
+                  return Center(child: Text("Sem conexão"));
+                }
 
-            List<Result> characters = snapshop.data.results;
+                List<Result> characters = snapshop.data.results;
 
-            return ListView.builder(
-                itemCount: characters.length,
-                itemBuilder: (BuildContext context, int index) {
-                  Result character = characters[index];
-                  return ProductCell(character, minusPressed, plusPressed);
-                });
-          }),
-    );
+                return ListView.builder(
+                    itemCount: characters.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Result character = characters[index];
+                      return ProductCell(character, minusPressed, plusPressed);
+                    });
+              }),
+        ));
   }
 
-  void minusPressed(Result character) {
-   print("-");
+  void minusPressed(Result character, int qtd) {
+    print("-");
   }
 
-  void plusPressed(Result character) {
+  void plusPressed(Result character, int qtd) {
     print("+");
   }
 }

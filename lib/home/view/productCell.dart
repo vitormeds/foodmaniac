@@ -7,15 +7,14 @@ class ProductCell extends StatelessWidget {
   ProductCell(this.character, this.minusPressed, this.plusPressed);
 
   Result character;
-  Function(Result character) minusPressed;
-  Function(Result character) plusPressed;
+  Function(Result character, int qtd) minusPressed;
+  Function(Result character, int qtd) plusPressed;
 
   AddComponent addComponent;
 
   @override
   Widget build(BuildContext context) {
-    addComponent = AddComponent(
-        value: 0, minusPressed: actionMinusPressed, plusPressed: actionPlusPressed);
+    addComponent = AddComponent(value: 0,minusPressed: actionMinusPressed, plusPressed: actionPlusPressed);
     return Container(
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,10 +50,16 @@ class ProductCell extends StatelessWidget {
   }
 
   void actionMinusPressed() {
-    minusPressed(character);
+    if(addComponent.value > 0) {
+      addComponent.value --;
+      addComponent.valueText.controller.text = addComponent.value.toString();
+      minusPressed(character, addComponent.value.toInt());
+    }
   }
 
   void actionPlusPressed() {
-    plusPressed(character);
+    addComponent.value ++;
+    addComponent.valueText.controller.text = addComponent.value.toString();
+    plusPressed(character, addComponent.value.toInt());
   }
 }
