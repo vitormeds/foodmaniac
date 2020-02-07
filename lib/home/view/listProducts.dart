@@ -15,6 +15,8 @@ class ListProducts extends StatefulWidget {
 class _ListProductsWidgetState extends State<ListProducts> {
   ProductBloc bloc;
 
+  bool showItensBar = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -73,14 +75,53 @@ class _ListProductsWidgetState extends State<ListProducts> {
                       return ProductCell(character, minusPressed, plusPressed);
                     });
               }),
+          bottomNavigationBar: showItensBar
+              ? Container(
+                  color: Colors.blue,
+                  height: 60,
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                          child: Text("Total: 00,00",
+                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16)),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerRight,
+                        margin: EdgeInsets.fromLTRB(4, 0, 8, 0),
+                        child: RaisedButton(
+                          child: Text(
+                            'Comprar',
+                            style: TextStyle(color: Colors.blue),
+                          ),
+                          onPressed: () {},
+                          color: Colors
+                              .white, //specify background color  of button from our list of colors
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              : Container(
+                  height: 0,
+                ),
         ));
   }
 
   void minusPressed(Result character, int qtd) {
     print("-");
+    setState(() {
+      showItensBar = false;
+    });
   }
 
   void plusPressed(Result character, int qtd) {
     print("+");
+    setState(() {
+      showItensBar = true;
+    });
   }
 }

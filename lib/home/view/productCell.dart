@@ -50,16 +50,16 @@ class ProductCell extends StatelessWidget {
   }
 
   void actionMinusPressed() {
-    if(addComponent.value > 0) {
-      addComponent.value --;
+    if(addComponent.value >= 0) {
+      addComponent.value = addComponent.value - 1;
       addComponent.valueText.controller.text = addComponent.value.toString();
-      minusPressed(character, addComponent.value.toInt());
+      minusPressed(character, addComponent.value);
     }
   }
 
   void actionPlusPressed() {
-    addComponent.value ++;
+    addComponent.value = addComponent.value + 1;
     addComponent.valueText.controller.text = addComponent.value.toString();
-    plusPressed(character, addComponent.value.toInt());
+    plusPressed(character, addComponent.value);
   }
 }
