@@ -20,9 +20,9 @@ class AddComponent extends StatelessWidget {
           alignment: Alignment.centerLeft,
           width: 40,
           child: RawMaterialButton(
-            onPressed: plusPressed,
+            onPressed: minusPressed,
             child: new Icon(
-              Icons.add,
+              Icons.minimize,
               color: Colors.white,
               size: 10.0,
             ),
@@ -40,9 +40,9 @@ class AddComponent extends StatelessWidget {
           alignment: Alignment.centerRight,
           width: 40,
           child: RawMaterialButton(
-            onPressed: minusPressed,
+            onPressed: plusPressed,
             child: new Icon(
-              Icons.minimize,
+              Icons.add,
               color: Colors.white,
               size: 10.0,
             ),
