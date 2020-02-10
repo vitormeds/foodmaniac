@@ -2,18 +2,17 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodmaniac/productList/model/infoProduct.dart';
 import 'package:foodmaniac/productList/model/product.dart';
 
 class AddComponent extends StatefulWidget {
   @override
-  _AddComponentWidgetState createState() => _AddComponentWidgetState();
+  _AddComponentWidgetState createState() => _AddComponentWidgetState(this.character, this.minusPressed, this.plusPressed);
 
-  AddComponent({this.character, this.minusPressed, this.plusPressed});
-
-  int value = 0;
-  Function(Result character, int qtd)  minusPressed;
-  Function(Result character, int qtd)  plusPressed;
-  Result character;
+  AddComponent(this.character, this.minusPressed, this.plusPressed);
+  Function(InfoProduct character)  minusPressed;
+  Function(InfoProduct character)  plusPressed;
+  InfoProduct character;
 }
 
 class _AddComponentWidgetState extends State<AddComponent> {
@@ -29,18 +28,18 @@ class _AddComponentWidgetState extends State<AddComponent> {
     super.dispose();
   }
 
-  _AddComponentWidgetState({this.character, this.minusPressed, this.plusPressed});
+  _AddComponentWidgetState(this.character, this.minusPressed, this.plusPressed);
 
-  Function(Result character, int qtd)  minusPressed;
-  Function(Result character, int qtd)  plusPressed;
-  Result character;
+  Function(InfoProduct character)  minusPressed;
+  Function(InfoProduct character)  plusPressed;
+  InfoProduct character;
 
   TextEditingController valueTextController;
   TextField valueText;
 
   @override
   Widget build(BuildContext context) {
-    valueTextController = TextEditingController(text: "0");
+    valueTextController = TextEditingController(text: character.qtd.toString());
     valueText = TextField(controller: valueTextController,keyboardType: TextInputType.number,);
     return Row(children: <Widget>[
       Container(
@@ -83,19 +82,19 @@ class _AddComponentWidgetState extends State<AddComponent> {
 
   void actionMinusPressed() {
     setState(() {
-      if(int.parse(valueText.controller.text) > 0) {
-        int value = int.parse(valueText.controller.text) - 1;
-        valueText.controller.text = value.toString();
-        minusPressed(character, value);
+      if(character.qtd > 0) {
+        character.qtd = character.qtd - 1;
+        valueText.controller.text = character.qtd.toString();
+        minusPressed(character);
       }
     });
   }
 
   void actionPlusPressed() {
     setState(() {
-      int value = int.parse(valueText.controller.text) + 1;
-      valueText.controller.text = value.toString();
-      plusPressed(character, value);
+      character.qtd = character.qtd + 1;
+      valueText.controller.text = character.qtd.toString();
+      plusPressed(character);
     });
   }
 }

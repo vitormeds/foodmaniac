@@ -1,9 +1,8 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodmaniac/productAdd/addProductWidget.dart';
 import 'package:foodmaniac/productList/bloc/productBloc.dart';
+import 'package:foodmaniac/productList/model/infoProduct.dart';
 import 'package:foodmaniac/productList/model/product.dart';
 import 'package:foodmaniac/productList/view/productCell.dart';
 
@@ -13,8 +12,9 @@ class ListProducts extends StatefulWidget {
 }
 
 class _ListProductsWidgetState extends State<ListProducts> {
-
   bool showItensBar = false;
+  List<InfoProduct> infoProducts = [];
+  double totalvalue = 0;
 
   @override
   void initState() {
@@ -66,11 +66,14 @@ class _ListProductsWidgetState extends State<ListProducts> {
                 }
 
                 List<Result> characters = snapshop.data.results;
+                for (int i = 0; i < characters.length; i++) {
+                  infoProducts.add(InfoProduct(characters[i], 0));
+                }
 
                 return ListView.builder(
-                    itemCount: characters.length,
+                    itemCount: infoProducts.length,
                     itemBuilder: (BuildContext context, int index) {
-                      Result character = characters[index];
+                      InfoProduct character = infoProducts[index];
                       return ProductCell(character, minusPressed, plusPressed);
                     });
               }),
@@ -84,8 +87,11 @@ class _ListProductsWidgetState extends State<ListProducts> {
                         child: Container(
                           alignment: Alignment.centerLeft,
                           margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                          child: Text("Total: 00,00",
-                              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16)),
+                          child: Text("Total: ${totalvalue}",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16)),
                         ),
                       ),
                       Container(
@@ -97,8 +103,7 @@ class _ListProductsWidgetState extends State<ListProducts> {
                             style: TextStyle(color: Colors.blue),
                           ),
                           onPressed: () {},
-                          color: Colors
-                              .white,
+                          color: Colors.white,
                         ),
                       )
                     ],
@@ -110,15 +115,27 @@ class _ListProductsWidgetState extends State<ListProducts> {
         ));
   }
 
-  void minusPressed(Result character, int qtd) {
-    setState(() {
-      showItensBar = false;
-    });
+  void minusPressed(InfoProduct character) {
+    updateValues();
   }
 
-  void plusPressed(Result character, int qtd) {
+  void plusPressed(InfoProduct character) {
+    updateValues();
+  }
+
+  void updateValues() {
     setState(() {
-      showItensBar = true;
+      int count = 0;
+      totalvalue = 0;
+      for (int i = 0; i < infoProducts.length; i++) {
+        count = count + infoProducts[i].qtd;
+        totalvalue = totalvalue + (infoProducts[i].qtd * infoProducts[i].value);
+      }
+      if (count > 0) {
+        showItensBar = true;
+      } else {
+        showItensBar = false;
+      }
     });
   }
 }

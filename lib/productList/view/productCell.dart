@@ -3,6 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodmaniac/productList/model/infoProduct.dart';
 import 'package:foodmaniac/productList/model/product.dart';
 import 'package:foodmaniac/productList/view/addComponent.dart';
 
@@ -12,9 +13,9 @@ class ProductCell extends StatefulWidget {
       this.character, this.minusPressed, this.plusPressed);
 
   ProductCell(this.character, this.minusPressed, this.plusPressed);
-  Result character;
-  Function(Result character, int qtd) minusPressed;
-  Function(Result character, int qtd) plusPressed;
+  InfoProduct character;
+  Function(InfoProduct character) minusPressed;
+  Function(InfoProduct character) plusPressed;
 }
 
 class _ProductCellWidgetState extends State<ProductCell> {
@@ -32,18 +33,18 @@ class _ProductCellWidgetState extends State<ProductCell> {
 
   _ProductCellWidgetState(this.character, this.minusPressed, this.plusPressed);
 
-  Result character;
-  Function(Result character, int qtd) minusPressed;
-  Function(Result character, int qtd) plusPressed;
+  InfoProduct character;
+  Function(InfoProduct character) minusPressed;
+  Function(InfoProduct character) plusPressed;
 
   AddComponent addComponent;
 
   @override
   Widget build(BuildContext context) {
     addComponent = AddComponent(
-        character: character,
-        minusPressed: minusPressed,
-        plusPressed: plusPressed);
+        character,
+        minusPressed,
+        plusPressed);
     return Container(
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,7 +52,7 @@ class _ProductCellWidgetState extends State<ProductCell> {
           Container(
               child: CachedNetworkImage(
             placeholder: (context, url) => CircularProgressIndicator(),
-            imageUrl: character.image,
+            imageUrl: character.product.image,
             height: 50,
             width: 50,
             alignment: Alignment.centerLeft,
@@ -61,10 +62,10 @@ class _ProductCellWidgetState extends State<ProductCell> {
             margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
             child: Column(
               children: <Widget>[
-                Text(character.name,
+                Text(character.product.name,
                     style: TextStyle(fontSize: 14),
                     overflow: TextOverflow.ellipsis),
-                Text(character.species,
+                Text(character.product.species,
                     style: TextStyle(fontSize: 14),
                     overflow: TextOverflow.ellipsis)
               ],
