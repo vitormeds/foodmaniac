@@ -1,5 +1,7 @@
+
+
 import 'package:dio/dio.dart';
-import 'package:foodmaniac/home/model/product.dart';
+import 'package:foodmaniac/productList/model/product.dart';
 import 'package:foodmaniac/utils/constants.dart';
 
 class ProductService {

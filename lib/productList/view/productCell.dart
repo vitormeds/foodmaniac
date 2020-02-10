@@ -1,10 +1,36 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:foodmaniac/home/model/product.dart';
-import 'package:foodmaniac/home/view/addComponent.dart';
 
-class ProductCell extends StatelessWidget {
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:foodmaniac/productList/model/product.dart';
+import 'package:foodmaniac/productList/view/addComponent.dart';
+
+class ProductCell extends StatefulWidget {
+  @override
+  _ProductCellWidgetState createState() => _ProductCellWidgetState(
+      this.character, this.minusPressed, this.plusPressed);
+
   ProductCell(this.character, this.minusPressed, this.plusPressed);
+  Result character;
+  Function(Result character, int qtd) minusPressed;
+  Function(Result character, int qtd) plusPressed;
+}
+
+class _ProductCellWidgetState extends State<ProductCell> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  _ProductCellWidgetState(this.character, this.minusPressed, this.plusPressed);
 
   Result character;
   Function(Result character, int qtd) minusPressed;
@@ -14,7 +40,10 @@ class ProductCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    addComponent = AddComponent(value: 0,minusPressed: actionMinusPressed, plusPressed: actionPlusPressed);
+    addComponent = AddComponent(
+        character: character,
+        minusPressed: minusPressed,
+        plusPressed: plusPressed);
     return Container(
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,19 +76,5 @@ class ProductCell extends StatelessWidget {
             alignment: Alignment.centerRight,
           )
         ]));
-  }
-
-  void actionMinusPressed() {
-    if(addComponent.value >= 0) {
-      addComponent.value = addComponent.value - 1;
-      addComponent.valueText.controller.text = addComponent.value.toString();
-      minusPressed(character, addComponent.value);
-    }
-  }
-
-  void actionPlusPressed() {
-    addComponent.value = addComponent.value + 1;
-    addComponent.valueText.controller.text = addComponent.value.toString();
-    plusPressed(character, addComponent.value);
   }
 }

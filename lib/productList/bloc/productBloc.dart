@@ -1,5 +1,7 @@
-import 'package:foodmaniac/home/model/product.dart';
-import 'package:foodmaniac/home/service/productService.dart';
+
+
+import 'package:foodmaniac/productList/model/product.dart';
+import 'package:foodmaniac/productList/service/productService.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ProductBloc {
