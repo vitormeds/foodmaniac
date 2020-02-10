@@ -13,7 +13,6 @@ class ListProducts extends StatefulWidget {
 }
 
 class _ListProductsWidgetState extends State<ListProducts> {
-  ProductBloc bloc;
 
   bool showItensBar = false;
 
@@ -21,13 +20,13 @@ class _ListProductsWidgetState extends State<ListProducts> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    bloc = ProductBloc();
+    ProductBloc().getData();
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    bloc.dispose();
+    ProductBloc().dispose();
     super.dispose();
   }
 
@@ -52,7 +51,7 @@ class _ListProductsWidgetState extends State<ListProducts> {
             child: Icon(Icons.add),
           ),
           body: StreamBuilder(
-              stream: bloc.product,
+              stream: ProductBloc().product,
               builder: (context, AsyncSnapshot<Product> snapshop) {
                 if (snapshop.connectionState == ConnectionState.waiting) {
                   return Center(

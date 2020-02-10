@@ -1,9 +1,5 @@
 import 'dart:convert';
 
-Product characterFromJson(String str) => Product.fromJson(json.decode(str));
-
-String characterToJson(Product data) => json.encode(data.toJson());
-
 class Product {
   Info info;
   List<Result> results;
