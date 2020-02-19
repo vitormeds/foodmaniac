@@ -15,7 +15,7 @@ class ProductBloc {
   
   final BehaviorSubject<bool> _listController = BehaviorSubject<bool>(seedValue: true);
   Sink<bool> get listIn => _listController.sink;
-  Observable<Product> product;
+  Observable<ProductElement> product;
 
   ProductService service = ProductService();
   

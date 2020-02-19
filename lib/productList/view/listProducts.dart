@@ -52,7 +52,7 @@ class _ListProductsWidgetState extends State<ListProducts> {
           ),
           body: StreamBuilder(
               stream: ProductBloc().product,
-              builder: (context, AsyncSnapshot<Product> snapshop) {
+              builder: (context, AsyncSnapshot<ProductElement> snapshop) {
                 if (snapshop.connectionState == ConnectionState.waiting) {
                   return Center(
                     child: CircularProgressIndicator(),
@@ -61,11 +61,11 @@ class _ListProductsWidgetState extends State<ListProducts> {
 
                 if (!snapshop.hasData ||
                     snapshop.hasError ||
-                    snapshop.data.results.isEmpty) {
+                    snapshop.data.products.isEmpty) {
                   return Center(child: Text("Sem conexão"));
                 }
 
-                List<Result> characters = snapshop.data.results;
+                List<Product> characters = snapshop.data.products;
                 for (int i = 0; i < characters.length; i++) {
                   infoProducts.add(InfoProduct(characters[i], 0));
                 }

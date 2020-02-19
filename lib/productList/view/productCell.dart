@@ -65,7 +65,7 @@ class _ProductCellWidgetState extends State<ProductCell> {
                 Text(character.product.name,
                     style: TextStyle(fontSize: 14),
                     overflow: TextOverflow.ellipsis),
-                Text(character.product.species,
+                Text(character.product.description,
                     style: TextStyle(fontSize: 14),
                     overflow: TextOverflow.ellipsis)
               ],

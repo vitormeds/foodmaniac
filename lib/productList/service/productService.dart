@@ -8,11 +8,11 @@ class ProductService {
 
   Dio dio = Dio();
 
-  Future<Product> getProducts() async {
-    Response response = await dio.get(url);
+  Future<ProductElement> getProducts() async {
+    Response response = await dio.get(urlListProducts);
 
     if(response.statusCode == 200) {
-      return Product.fromJson(response.data);
+      return ProductElement.fromJson(response.data);
     } else {
       Exception("Erro de Conexão");
     }
