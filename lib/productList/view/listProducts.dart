@@ -124,7 +124,7 @@ class _ListProductsWidgetState extends State<ListProducts> {
       totalvalue = 0;
       for (int i = 0; i < infoProductsAux.length; i++) {
         count = count + infoProductsAux[i].qtd;
-        totalvalue = totalvalue + (infoProductsAux[i].qtd * infoProductsAux[i].value);
+        totalvalue = totalvalue + (infoProductsAux[i].qtd * infoProductsAux[i].product.price);
       }
       if (count > 0) {
         showItensBar = true;

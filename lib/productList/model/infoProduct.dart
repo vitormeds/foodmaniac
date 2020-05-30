@@ -4,5 +4,4 @@ class InfoProduct {
   InfoProduct(this.product,this.qtd);
   Product product;
   int qtd;
-  double value = 0;
 }
