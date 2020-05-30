@@ -13,8 +13,7 @@ class ListProducts extends StatefulWidget {
 
 class _ListProductsWidgetState extends State<ListProducts> {
   bool showItensBar = false;
-  double totalvalue = 0;  
-  List<InfoProduct> infoProductsAux;
+  double totalvalue = 0;
 
   @override
   void initState() {
@@ -64,7 +63,33 @@ class _ListProductsWidgetState extends State<ListProducts> {
                     snapshop.data.isEmpty) {
                   return Center(child: Text("Sem conexão"));
                 }
-                infoProductsAux = snapshop.data;
+
+                void updateValues() {
+                  setState(() {
+                    int count = 0;
+                    totalvalue = 0;
+                    for (int i = 0; i < snapshop.data.length; i++) {
+                      count = count + snapshop.data[i].qtd;
+                      totalvalue = totalvalue +
+                          (snapshop.data[i].qtd *
+                              snapshop.data[i].product.price);
+                    }
+                    if (count > 0) {
+                      showItensBar = true;
+                    } else {
+                      showItensBar = false;
+                    }
+                  });
+                }
+
+                void minusPressed(InfoProduct character) {
+                  updateValues();
+                }
+
+                void plusPressed(InfoProduct character) {
+                  updateValues();
+                }
+
                 return ListView.builder(
                     itemCount: snapshop.data.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -108,29 +133,5 @@ class _ListProductsWidgetState extends State<ListProducts> {
                   height: 0,
                 ),
         ));
-  }
-
-  void minusPressed(InfoProduct character) {
-    updateValues();
-  }
-
-  void plusPressed(InfoProduct character) {
-    updateValues();
-  }
-
-  void updateValues() {
-    setState(() {
-      int count = 0;
-      totalvalue = 0;
-      for (int i = 0; i < infoProductsAux.length; i++) {
-        count = count + infoProductsAux[i].qtd;
-        totalvalue = totalvalue + (infoProductsAux[i].qtd * infoProductsAux[i].product.price);
-      }
-      if (count > 0) {
-        showItensBar = true;
-      } else {
-        showItensBar = false;
-      }
-    });
   }
 }
