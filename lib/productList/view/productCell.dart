@@ -1,5 +1,3 @@
-
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,10 +39,7 @@ class _ProductCellWidgetState extends State<ProductCell> {
 
   @override
   Widget build(BuildContext context) {
-    addComponent = AddComponent(
-        character,
-        minusPressed,
-        plusPressed);
+    addComponent = AddComponent(character, minusPressed, plusPressed);
     return Container(
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
