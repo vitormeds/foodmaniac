@@ -13,8 +13,8 @@ class ListProducts extends StatefulWidget {
 
 class _ListProductsWidgetState extends State<ListProducts> {
   bool showItensBar = false;
-  List<InfoProduct> infoProducts = [];
-  double totalvalue = 0;
+  double totalvalue = 0;  
+  List<InfoProduct> infoProductsAux;
 
   @override
   void initState() {
@@ -51,8 +51,8 @@ class _ListProductsWidgetState extends State<ListProducts> {
             child: Icon(Icons.add),
           ),
           body: StreamBuilder(
-              stream: ProductBloc().product,
-              builder: (context, AsyncSnapshot<ProductElement> snapshop) {
+              stream: ProductBloc().infoProducts,
+              builder: (context, AsyncSnapshot<List<InfoProduct>> snapshop) {
                 if (snapshop.connectionState == ConnectionState.waiting) {
                   return Center(
                     child: CircularProgressIndicator(),
@@ -61,19 +61,14 @@ class _ListProductsWidgetState extends State<ListProducts> {
 
                 if (!snapshop.hasData ||
                     snapshop.hasError ||
-                    snapshop.data.products.isEmpty) {
+                    snapshop.data.isEmpty) {
                   return Center(child: Text("Sem conexão"));
                 }
-
-                List<Product> characters = snapshop.data.products;
-                for (int i = 0; i < characters.length; i++) {
-                  infoProducts.add(InfoProduct(characters[i], 0));
-                }
-
+                infoProductsAux = snapshop.data;
                 return ListView.builder(
-                    itemCount: infoProducts.length,
+                    itemCount: snapshop.data.length,
                     itemBuilder: (BuildContext context, int index) {
-                      InfoProduct character = infoProducts[index];
+                      InfoProduct character = snapshop.data[index];
                       return ProductCell(character, minusPressed, plusPressed);
                     });
               }),
@@ -127,9 +122,9 @@ class _ListProductsWidgetState extends State<ListProducts> {
     setState(() {
       int count = 0;
       totalvalue = 0;
-      for (int i = 0; i < infoProducts.length; i++) {
-        count = count + infoProducts[i].qtd;
-        totalvalue = totalvalue + (infoProducts[i].qtd * infoProducts[i].value);
+      for (int i = 0; i < infoProductsAux.length; i++) {
+        count = count + infoProductsAux[i].qtd;
+        totalvalue = totalvalue + (infoProductsAux[i].qtd * infoProductsAux[i].value);
       }
       if (count > 0) {
         showItensBar = true;

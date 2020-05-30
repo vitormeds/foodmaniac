@@ -1,5 +1,6 @@
 
 
+import 'package:foodmaniac/productList/model/infoProduct.dart';
 import 'package:foodmaniac/productList/model/product.dart';
 import 'package:foodmaniac/productList/service/productService.dart';
 import 'package:rxdart/rxdart.dart';
@@ -15,12 +16,11 @@ class ProductBloc {
   
   final BehaviorSubject<bool> _listController = BehaviorSubject<bool>(seedValue: true);
   Sink<bool> get listIn => _listController.sink;
-  Observable<ProductElement> product;
-
+  Observable<List<InfoProduct>> infoProducts;
   ProductService service = ProductService();
   
   getData(){
-    product = _listController.stream.asyncMap((d) => service.getProducts());
+    infoProducts = _listController.stream.asyncMap((d) => service.getProducts());
   }
 
   dispose() {
