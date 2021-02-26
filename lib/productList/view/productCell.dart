@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:foodmaniac/productList/model/infoProduct.dart';
 import 'package:foodmaniac/productList/model/product.dart';
 import 'package:foodmaniac/productList/view/addComponent.dart';
+import 'package:foodmaniac/utils/constants.dart';
 
 class ProductCell extends StatefulWidget {
   @override
@@ -45,9 +46,9 @@ class _ProductCellWidgetState extends State<ProductCell> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
           Container(
-              child: CachedNetworkImage(
+              child: CachedNetworkImage (
             placeholder: (context, url) => CircularProgressIndicator(),
-            imageUrl: character.product.image,
+            imageUrl: baseImageUrl + character.product.image,
             height: 50,
             width: 50,
             alignment: Alignment.centerLeft,
