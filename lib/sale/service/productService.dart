@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:foodmaniac/productList/model/infoProduct.dart';
-import 'package:foodmaniac/productList/model/product.dart';
+import 'package:foodmaniac/sale/model/infoProduct.dart';
+import 'package:foodmaniac/sale/model/product.dart';
 import 'package:foodmaniac/utils/constants.dart';
 import 'package:http/http.dart' as http;
 

@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodmaniac/productAdd/addProductWidget.dart';
-import 'package:foodmaniac/productList/bloc/productBloc.dart';
-import 'package:foodmaniac/productList/model/infoProduct.dart';
-import 'package:foodmaniac/productList/model/product.dart';
-import 'package:foodmaniac/productList/view/productCell.dart';
-import 'package:foodmaniac/productList/view/shoppingCart.dart';
+import 'package:foodmaniac/sale/bloc/productBloc.dart';
+import 'package:foodmaniac/sale/model/infoProduct.dart';
+import 'package:foodmaniac/sale/view/productCell.dart';
+import 'package:foodmaniac/sale/view/shoppingCart.dart';
+import 'package:foodmaniac/profile/view/profile.dart';
 
 class ListProducts extends StatefulWidget {
   @override
@@ -39,15 +38,6 @@ class _ListProductsWidgetState extends State<ListProducts> {
         },
         behavior: HitTestBehavior.translucent,
         child: Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AddProductWidget()),
-              );
-            },
-            child: Icon(Icons.add),
-          ),
           body: StreamBuilder(
               stream: ProductBloc().infoProducts,
               builder: (context, AsyncSnapshot<List<InfoProduct>> snapshop) {

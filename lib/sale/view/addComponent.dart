@@ -2,8 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodmaniac/productList/model/infoProduct.dart';
-import 'package:foodmaniac/productList/model/product.dart';
+import 'package:foodmaniac/sale/model/infoProduct.dart';
 
 class AddComponent extends StatefulWidget {
   @override

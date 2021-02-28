@@ -2,9 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodmaniac/productList/view/listProducts.dart';
-import 'package:foodmaniac/productList/view/login.dart';
-import 'package:foodmaniac/productList/view/myBottomNavigationBar.dart';
+import 'file:///C:/Users/vitu1/Documents/GitHub/foodmaniac/lib/login/view/login.dart';
+import 'file:///C:/Users/vitu1/Documents/GitHub/foodmaniac/lib/aplication/view/myBottomNavigationBar.dart';
 
 void main() => runApp(MyApp());
 

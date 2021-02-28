@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodmaniac/productAdd/addProductWidget.dart';
-import 'package:foodmaniac/productList/view/listProducts.dart';
-import 'package:foodmaniac/productList/view/requests.dart';
+import 'file:///C:/Users/vitu1/Documents/GitHub/foodmaniac/lib/request/view/requests.dart';
+import 'package:foodmaniac/profile/view/profile.dart';
+import 'package:foodmaniac/sale/view/listProducts.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
   @override
@@ -29,7 +29,7 @@ class _MyBottomNavigationBarWidgetState extends State<MyBottomNavigationBar> {
   static List<Widget> _widgetOptions = <Widget>[
     ListProducts(),
     Requests(),
-    AddProductWidget(),
+    Profile(),
   ];
 
   void _onItemTapped(int index) {

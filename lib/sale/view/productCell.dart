@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodmaniac/productList/model/infoProduct.dart';
-import 'package:foodmaniac/productList/model/product.dart';
-import 'package:foodmaniac/productList/view/addComponent.dart';
+import 'package:foodmaniac/sale/model/infoProduct.dart';
+import 'package:foodmaniac/sale/view/addComponent.dart';
 import 'package:foodmaniac/utils/constants.dart';
 
 class ProductCell extends StatefulWidget {

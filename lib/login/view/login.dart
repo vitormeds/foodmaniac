@@ -3,7 +3,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodmaniac/productList/view/myBottomNavigationBar.dart';
+import 'file:///C:/Users/vitu1/Documents/GitHub/foodmaniac/lib/aplication/view/myBottomNavigationBar.dart';
 
 class Login extends StatefulWidget {
   @override
