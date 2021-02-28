@@ -39,9 +39,6 @@ class _ListProductsWidgetState extends State<ListProducts> {
         },
         behavior: HitTestBehavior.translucent,
         child: Scaffold(
-          appBar: AppBar(
-            title: Text("Food Maniac"),
-          ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               Navigator.push(
