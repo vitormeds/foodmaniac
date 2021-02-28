@@ -5,6 +5,7 @@ import 'package:foodmaniac/productList/bloc/productBloc.dart';
 import 'package:foodmaniac/productList/model/infoProduct.dart';
 import 'package:foodmaniac/productList/model/product.dart';
 import 'package:foodmaniac/productList/view/productCell.dart';
+import 'package:foodmaniac/productList/view/shoppingCart.dart';
 
 class ListProducts extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class ListProducts extends StatefulWidget {
 class _ListProductsWidgetState extends State<ListProducts> {
   bool showItensBar = false;
   double totalvalue = 0;
+  List<InfoProduct> cartList = [];
 
   @override
   void initState() {
@@ -68,11 +70,15 @@ class _ListProductsWidgetState extends State<ListProducts> {
                   setState(() {
                     int count = 0;
                     totalvalue = 0;
+                    cartList.clear();
                     for (int i = 0; i < snapshop.data.length; i++) {
-                      count = count + snapshop.data[i].qtd;
-                      totalvalue = totalvalue +
-                          (snapshop.data[i].qtd *
-                              snapshop.data[i].product.price);
+                      if (snapshop.data[i].qtd > 0) {
+                        cartList.add(snapshop.data[i]);
+                        count = count + snapshop.data[i].qtd;
+                        totalvalue = totalvalue +
+                            (snapshop.data[i].qtd *
+                                snapshop.data[i].product.price);
+                      }
                     }
                     if (count > 0) {
                       showItensBar = true;
@@ -122,7 +128,12 @@ class _ListProductsWidgetState extends State<ListProducts> {
                             'Comprar',
                             style: TextStyle(color: Colors.blue),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ShoppingCartWidget(cartList)),
+                            );
+                          },
                           color: Colors.white,
                         ),
                       )
