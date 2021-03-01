@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:foodmaniac/sale/bloc/productBloc.dart';
 import 'package:foodmaniac/sale/model/infoProduct.dart';
 import 'package:foodmaniac/sale/view/productCell.dart';
+import 'package:foodmaniac/sale/view/productDetail.dart';
 import 'package:foodmaniac/sale/view/shoppingCart.dart';
 import 'package:foodmaniac/profile/view/profile.dart';
 
@@ -83,11 +84,23 @@ class _ListProductsWidgetState extends State<ListProducts> {
                   updateValues();
                 }
 
+                void addProduct(InfoProduct product) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProductDetailWidget(product)),
+                  );
+                }
+
                 return ListView.builder(
                     itemCount: snapshop.data.length,
                     itemBuilder: (BuildContext context, int index) {
-                      InfoProduct character = snapshop.data[index];
-                      return ProductCell(character, minusPressed, plusPressed);
+                      InfoProduct product = snapshop.data[index];
+                      return GestureDetector(
+                      child: ProductCell(product),
+                        onTap: () {
+                          addProduct(product);
+                        },
+                      );
                     });
               }),
           bottomNavigationBar: showItensBar

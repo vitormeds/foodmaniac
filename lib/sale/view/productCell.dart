@@ -8,12 +8,10 @@ import 'package:foodmaniac/utils/constants.dart';
 class ProductCell extends StatefulWidget {
   @override
   _ProductCellWidgetState createState() => _ProductCellWidgetState(
-      this.character, this.minusPressed, this.plusPressed);
+      this.character);
 
-  ProductCell(this.character, this.minusPressed, this.plusPressed);
+  ProductCell(this.character);
   InfoProduct character;
-  Function(InfoProduct character) minusPressed;
-  Function(InfoProduct character) plusPressed;
 }
 
 class _ProductCellWidgetState extends State<ProductCell> {
@@ -29,17 +27,15 @@ class _ProductCellWidgetState extends State<ProductCell> {
     super.dispose();
   }
 
-  _ProductCellWidgetState(this.character, this.minusPressed, this.plusPressed);
+  _ProductCellWidgetState(this.character);
 
   InfoProduct character;
-  Function(InfoProduct character) minusPressed;
-  Function(InfoProduct character) plusPressed;
 
   AddComponent addComponent;
 
   @override
   Widget build(BuildContext context) {
-    addComponent = AddComponent(character, minusPressed, plusPressed);
+
     return Container(
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,11 +62,7 @@ class _ProductCellWidgetState extends State<ProductCell> {
               ],
             ),
             alignment: Alignment.center,
-          )),
-          Container(
-            child: addComponent,
-            alignment: Alignment.centerRight,
-          )
+          ))
         ]));
   }
 }
