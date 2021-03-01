@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Utils {
 
@@ -15,4 +16,10 @@ class Utils {
       ),
     );
   }
+
+  static String formatDoubleToCurrency(double value) {
+    final formatter = NumberFormat.simpleCurrency(locale: "pt_BR");
+    return formatter.format(value);
+  }
+
 }

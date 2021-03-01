@@ -6,6 +6,7 @@ import 'package:foodmaniac/components/textView.dart';
 import 'package:foodmaniac/sale/model/infoProduct.dart';
 import 'package:foodmaniac/sale/view/addComponent.dart';
 import 'package:foodmaniac/utils/constants.dart';
+import 'package:foodmaniac/utils/utils.dart';
 
 class ProductDetailWidget extends StatefulWidget {
   @override
@@ -19,11 +20,14 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
   InfoProduct product;
   final obsController = TextEditingController();
   AddComponent addComponent;
+  double price;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    price = product.product.price;
+    product.qtd = 1;
   }
 
   @override
@@ -37,16 +41,20 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
   @override
   Widget build(BuildContext context) {
 
-    void minusPressed(InfoProduct character) {
-
+    void minusPressed(InfoProduct product) {
+      setState(() {
+          price -= product.product.price;
+      });
     }
 
-    void plusPressed(InfoProduct character) {
-
+    void plusPressed(InfoProduct product) {
+      setState(() {
+        price += product.product.price;
+      });
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text("Cart"),),
+      appBar: AppBar(title: Text("Adicionar ao carrinho"),),
 
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -79,7 +87,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                 margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
                 child: RaisedButton(
                   child: Text(
-                    'Adicionar',
+                    'Adicionar ' + Utils.formatDoubleToCurrency(price),
                     style: TextStyle(color: primaryColor),
                   ),
                   onPressed: () {

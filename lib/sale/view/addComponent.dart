@@ -51,7 +51,6 @@ class _AddComponentWidgetState extends State<AddComponent> {
           )),
       Container(
         alignment: Alignment.center,
-        width: 20,
         child: Text(character.qtd.toString(),
             textAlign: TextAlign.center,
             style: TextStyle(color: secondaryColor, fontSize: 16),
@@ -74,7 +73,7 @@ class _AddComponentWidgetState extends State<AddComponent> {
 
   void actionMinusPressed() {
     setState(() {
-      if(character.qtd > 0) {
+      if(character.qtd > 1) {
         character.qtd = character.qtd - 1;
         minusPressed(character);
       }
