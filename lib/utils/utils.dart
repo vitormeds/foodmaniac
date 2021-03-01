@@ -11,7 +11,7 @@ class Utils {
           width: borderSize
       ),
       borderRadius: BorderRadius.all(
-          Radius.circular(radiusSize) //                 <--- border radius here
+          Radius.circular(radiusSize)
       ),
     );
   }

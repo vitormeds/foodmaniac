@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'file:///C:/Users/vitu1/Documents/GitHub/foodmaniac/lib/login/view/login.dart';
 import 'file:///C:/Users/vitu1/Documents/GitHub/foodmaniac/lib/aplication/view/myBottomNavigationBar.dart';
+import 'package:foodmaniac/utils/constants.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Food Maniac",
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: primaryColor,
       ),
       home: getHomeScreen(),
     );

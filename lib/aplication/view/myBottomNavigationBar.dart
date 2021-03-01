@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'file:///C:/Users/vitu1/Documents/GitHub/foodmaniac/lib/request/view/requests.dart';
 import 'package:foodmaniac/profile/view/profile.dart';
 import 'package:foodmaniac/sale/view/listProducts.dart';
+import 'package:foodmaniac/utils/constants.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
   @override
@@ -60,7 +61,7 @@ class _MyBottomNavigationBarWidgetState extends State<MyBottomNavigationBar> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: primaryColor,
         onTap: _onItemTapped,
       ),
     );

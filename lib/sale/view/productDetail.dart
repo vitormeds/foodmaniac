@@ -65,7 +65,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
         ],
       ),
         bottomNavigationBar: Container(
-          color: Colors.blue,
+          color: primaryColor,
           height: 60,
           child: Row(
             children: <Widget>[
@@ -80,12 +80,12 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                 child: RaisedButton(
                   child: Text(
                     'Adicionar',
-                    style: TextStyle(color: Colors.blue),
+                    style: TextStyle(color: primaryColor),
                   ),
                   onPressed: () {
 
                   },
-                  color: Colors.white,
+                  color: secondaryColor,
                 ),
               )
             ],

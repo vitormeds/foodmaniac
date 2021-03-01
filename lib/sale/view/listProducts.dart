@@ -103,46 +103,6 @@ class _ListProductsWidgetState extends State<ListProducts> {
                       );
                     });
               }),
-          bottomNavigationBar: showItensBar
-              ? Container(
-                  color: Colors.blue,
-                  height: 60,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.centerLeft,
-                          margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                          child: Text("Total: ${totalvalue}",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16)),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerRight,
-                        margin: EdgeInsets.fromLTRB(4, 0, 8, 0),
-                        child: RaisedButton(
-                          child: Text(
-                            'Comprar',
-                            style: TextStyle(color: Colors.blue),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => ShoppingCartWidget(cartList)),
-                            );
-                          },
-                          color: Colors.white,
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              : Container(
-                  height: 0,
-                ),
         ));
   }
 }

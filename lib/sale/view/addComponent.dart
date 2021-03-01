@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodmaniac/sale/model/infoProduct.dart';
+import 'package:foodmaniac/utils/constants.dart';
 
 class AddComponent extends StatefulWidget {
   @override
@@ -33,13 +34,8 @@ class _AddComponentWidgetState extends State<AddComponent> {
   Function(InfoProduct character)  plusPressed;
   InfoProduct character;
 
-  TextEditingController valueTextController;
-  TextField valueText;
-
   @override
   Widget build(BuildContext context) {
-    valueTextController = TextEditingController(text: character.qtd.toString());
-    valueText = TextField(controller: valueTextController,keyboardType: TextInputType.number,);
     return Row(children: <Widget>[
       Container(
           margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
@@ -47,19 +43,19 @@ class _AddComponentWidgetState extends State<AddComponent> {
           width: 40,
           child: RawMaterialButton(
             onPressed: actionMinusPressed,
-            child: new Icon(
-              Icons.minimize,
-              color: Colors.white,
-              size: 10.0,
+            child:  Text(
+              '-',
+              style: TextStyle(color: primaryColor, fontSize: 30),
             ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Colors.blue,
+            fillColor: secondaryColor,
           )),
       Container(
         alignment: Alignment.center,
         width: 20,
-        child: valueText,
+        child: Text(character.qtd.toString(),
+            textAlign: TextAlign.center,
+            style: TextStyle(color: secondaryColor, fontSize: 16),
+          maxLines: 1,),
       ),
       Container(
           margin: EdgeInsets.fromLTRB(4, 0, 4, 0),
@@ -67,14 +63,11 @@ class _AddComponentWidgetState extends State<AddComponent> {
           width: 40,
           child: RawMaterialButton(
             onPressed: actionPlusPressed,
-            child: new Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 10.0,
+            child:  Text(
+              '+',
+              style: TextStyle(color: primaryColor, fontSize: 30),
             ),
-            shape: new CircleBorder(),
-            elevation: 2.0,
-            fillColor: Colors.blue,
+            fillColor: secondaryColor,
           ))
     ]);
   }
@@ -83,7 +76,6 @@ class _AddComponentWidgetState extends State<AddComponent> {
     setState(() {
       if(character.qtd > 0) {
         character.qtd = character.qtd - 1;
-        valueText.controller.text = character.qtd.toString();
         minusPressed(character);
       }
     });
@@ -92,7 +84,6 @@ class _AddComponentWidgetState extends State<AddComponent> {
   void actionPlusPressed() {
     setState(() {
       character.qtd = character.qtd + 1;
-      valueText.controller.text = character.qtd.toString();
       plusPressed(character);
     });
   }
